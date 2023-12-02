@@ -53,5 +53,22 @@ ON d.location_id = l.location_id
 WHERE l.country_id = 'US'
 ORDER BY e.employee_id;
 ---------------------------------------------------------------------------------------------------
-// 
+// Display the details of the employees who had job titles like 'sales' in the past and the min_salary is greater than or equal to 6000.
+
+Return the columns 'employee_id', 'department_name', 'job_id', 'job_title', and 'min_salary'.
+Return the employee's current information for the columns 'employee_id', and 'department_name'.
+Return the employee's past information for the columns 'job_id', 'job_title', and 'min_salary'.
+Return the output ordered by employee_id and min_salary in ascending order.
+
+SELECT e.employee_id, d.department_name, j.job_id, j.job_title, j.min_salary
+FROM employees e
+JOIN departments d
+ON e.department_id = d.department_id
+JOIN job_history jh
+ON e.employee_id = jh.employee_id
+JOIN jobs j
+ON j.job_id = jh.job_id
+WHERE j.job_title LIKE 'Sales%'
+AND j.min_salary >= 6000
+ORDER BY e.employee_id, j.min_salary;
 ---------------------------------------------------------------------------------------------------
